@@ -1,0 +1,59 @@
+Kingambit @ Leftovers
+Ability: Supreme Overlord
+Tera Type: Dark
+EVs: 252 HP / 252 Atk / 4 Spe
+Adamant Nature
+- Kowtow Cleave
+- Sucker Punch
+- Iron Head
+- Swords Dance
+
+Gholdengo @ Air Balloon
+Ability: Good as Gold
+Tera Type: Water
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Make It Rain
+- Shadow Ball
+- Recover
+- Nasty Plot
+
+Great Tusk @ Heavy-Duty Boots
+Ability: Protosynthesis
+Tera Type: Steel
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Headlong Rush
+- Ice Spinner
+- Knock Off
+- Rapid Spin
+
+Dragapult @ Choice Specs
+Ability: Infiltrator
+Tera Type: Ghost
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Shadow Ball
+- Draco Meteor
+- Flamethrower
+- U-turn
+
+Ting-Lu @ Leftovers
+Ability: Vessel of Ruin
+Tera Type: Ghost
+EVs: 252 HP / 4 Atk / 252 Def
+Impish Nature
+- Earthquake
+- Spikes
+- Whirlwind
+- Ruination
+
+Zapdos @ Heavy-Duty Boots
+Ability: Static
+Tera Type: Fairy
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hurricane
+- Volt Switch
+- Roost

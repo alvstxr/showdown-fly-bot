@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.python-version
+.pytest_cache/
+.mypy_cache/
+data/connectome/*.npz
+data/connectome/*.pkl
+data/weights/*.npy
+data/weights/*.pt
+replays/
+*.log
+.DS_Store
+Thumbs.db

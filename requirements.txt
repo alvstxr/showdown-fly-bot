@@ -1,0 +1,7 @@
+poke-env>=0.13.0
+numpy>=1.24.0
+scipy>=1.11.0
+python-dotenv>=1.0.0
+# Optional: numpy fallback is used if these are missing
+# torch>=2.1.0
+# neuprint-python>=0.4.26

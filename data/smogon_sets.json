@@ -1,0 +1,690 @@
+{
+  "kingambit": [
+    {
+      "name": "Swords Dance",
+      "ability": "supremeoverlord",
+      "item": "leftovers",
+      "tera": "dark",
+      "nature": "adamant",
+      "evs": {"hp": 252, "atk": 252, "spe": 4},
+      "moves": ["kowtowcleave", "suckerpunch", "ironhead", "swordsdance"],
+      "category": "physical"
+    },
+    {
+      "name": "Choice Band",
+      "ability": "supremeoverlord",
+      "item": "choiceband",
+      "tera": "dark",
+      "nature": "adamant",
+      "evs": {"hp": 252, "atk": 252, "spe": 4},
+      "moves": ["kowtowcleave", "suckerpunch", "ironhead", "lowkick"],
+      "category": "physical"
+    }
+  ],
+  "gholdengo": [
+    {
+      "name": "Nasty Plot",
+      "ability": "goodasgold",
+      "item": "airballoon",
+      "tera": "water",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["makeitrain", "shadowball", "recover", "nastyplot"],
+      "category": "special"
+    },
+    {
+      "name": "Choice Specs",
+      "ability": "goodasgold",
+      "item": "choicespecs",
+      "tera": "steel",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["makeitrain", "shadowball", "trick", "focusblast"],
+      "category": "special"
+    }
+  ],
+  "greattusk": [
+    {
+      "name": "Hazard Removal",
+      "ability": "protosynthesis",
+      "item": "heavydutyboots",
+      "tera": "steel",
+      "nature": "jolly",
+      "evs": {"atk": 252, "def": 4, "spe": 252},
+      "moves": ["headlongrush", "icespinner", "knockoff", "rapidspin"],
+      "category": "physical"
+    },
+    {
+      "name": "Bulk",
+      "ability": "protosynthesis",
+      "item": "leftovers",
+      "tera": "ghost",
+      "nature": "impish",
+      "evs": {"hp": 252, "def": 252, "spe": 4},
+      "moves": ["headlongrush", "knockoff", "rapidspin", "stealthrock"],
+      "category": "physical"
+    }
+  ],
+  "dragapult": [
+    {
+      "name": "Choice Specs",
+      "ability": "infiltrator",
+      "item": "choicespecs",
+      "tera": "ghost",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["shadowball", "dracometeor", "flamethrower", "uturn"],
+      "category": "special"
+    },
+    {
+      "name": "Choice Band",
+      "ability": "clearsbody",
+      "item": "choiceband",
+      "tera": "ghost",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["dragondarts", "uturn", "suckerpunch", "spiritshackle"],
+      "category": "physical"
+    },
+    {
+      "name": "Utility",
+      "ability": "infiltrator",
+      "item": "heavydutyboots",
+      "tera": "fairy",
+      "nature": "timid",
+      "evs": {"hp": 252, "spd": 4, "spe": 252},
+      "moves": ["hex", "willowisp", "dracometeor", "uturn"],
+      "category": "special"
+    }
+  ],
+  "tinglu": [
+    {
+      "name": "Hazard Lead",
+      "ability": "vesselofruin",
+      "item": "leftovers",
+      "tera": "ghost",
+      "nature": "impish",
+      "evs": {"hp": 252, "atk": 4, "def": 252},
+      "moves": ["earthquake", "spikes", "whirlwind", "ruination"],
+      "category": "physical"
+    },
+    {
+      "name": "Stealth Rock",
+      "ability": "vesselofruin",
+      "item": "leftovers",
+      "tera": "water",
+      "nature": "careful",
+      "evs": {"hp": 252, "def": 4, "spd": 252},
+      "moves": ["earthquake", "stealthrock", "whirlwind", "rest"],
+      "category": "physical"
+    }
+  ],
+  "ironvaliant": [
+    {
+      "name": "Swords Dance",
+      "ability": "quarkdrive",
+      "item": "boosterenergy",
+      "tera": "dark",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["closecombat", "spiritbreak", "knockoff", "swordsdance"],
+      "category": "physical"
+    },
+    {
+      "name": "Special Booster",
+      "ability": "quarkdrive",
+      "item": "boosterenergy",
+      "tera": "fairy",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["moonblast", "psyshock", "shadowball", "calmmind"],
+      "category": "special"
+    }
+  ],
+  "landorustherian": [
+    {
+      "name": "Offensive",
+      "ability": "intimidate",
+      "item": "choicescarf",
+      "tera": "ground",
+      "nature": "jolly",
+      "evs": {"atk": 252, "def": 4, "spe": 252},
+      "moves": ["earthquake", "uturn", "stoneedge", "stealthrock"],
+      "category": "physical"
+    },
+    {
+      "name": "Defensive",
+      "ability": "intimidate",
+      "item": "leftovers",
+      "tera": "water",
+      "nature": "impish",
+      "evs": {"hp": 252, "def": 240, "spe": 16},
+      "moves": ["earthquake", "uturn", "stealthrock", "toxic"],
+      "category": "physical"
+    }
+  ],
+  "slowkinggalar": [
+    {
+      "name": "Assault Vest",
+      "ability": "regenerator",
+      "item": "assaultvest",
+      "tera": "water",
+      "nature": "sassy",
+      "evs": {"hp": 248, "spa": 16, "spd": 244},
+      "moves": ["futuresight", "sludgebomb", "flamethrower", "chillyreception"],
+      "category": "special"
+    },
+    {
+      "name": "Calm Mind",
+      "ability": "regenerator",
+      "item": "heavydutyboots",
+      "tera": "water",
+      "nature": "bold",
+      "evs": {"hp": 252, "def": 252, "spd": 4},
+      "moves": ["sludgebomb", "flamethrower", "slackoff", "calmmind"],
+      "category": "special"
+    }
+  ],
+  "dragonite": [
+    {
+      "name": "Dragon Dance",
+      "ability": "multiscale",
+      "item": "heavydutyboots",
+      "tera": "normal",
+      "nature": "adamant",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["dragondance", "earthquake", "extremespeed", "outrage"],
+      "category": "physical"
+    }
+  ],
+  "volcarona": [
+    {
+      "name": "Quiver Dance",
+      "ability": "flamebody",
+      "item": "heavydutyboots",
+      "tera": "water",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["quiverdance", "fierydance", "gigadrain", "bugbuzz"],
+      "category": "special"
+    }
+  ],
+  "ragingbolt": [
+    {
+      "name": "Calm Mind",
+      "ability": "protosynthesis",
+      "item": "boosterenergy",
+      "tera": "fairy",
+      "nature": "modest",
+      "evs": {"hp": 252, "spa": 252, "spe": 4},
+      "moves": ["thunderclap", "dragonpulse", "calmmind", "thunderbolt"],
+      "category": "special"
+    }
+  ],
+  "ironmoth": [
+    {
+      "name": "Offensive",
+      "ability": "quarkdrive",
+      "item": "boosterenergy",
+      "tera": "fairy",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["fierydance", "sludgewave", "psychic", "uturn"],
+      "category": "special"
+    }
+  ],
+  "samurotthisui": [
+    {
+      "name": "Hazard Lead",
+      "ability": "sharpness",
+      "item": "focussash",
+      "tera": "ghost",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["ceaselessedge", "razorshell", "sacredsword", "knockoff"],
+      "category": "physical"
+    }
+  ],
+  "ogerponwellspring": [
+    {
+      "name": "Offensive",
+      "ability": "waterabsorb",
+      "item": "wellspringmask",
+      "tera": "water",
+      "nature": "jolly",
+      "evs": {"atk": 252, "def": 4, "spe": 252},
+      "moves": ["ivycudgel", "hornleech", "knockoff", "playrough"],
+      "category": "physical"
+    }
+  ],
+  "heatran": [
+    {
+      "name": "Specially Defensive",
+      "ability": "flashfire",
+      "item": "leftovers",
+      "tera": "grass",
+      "nature": "calm",
+      "evs": {"hp": 252, "spd": 216, "spe": 40},
+      "moves": ["magmastorm", "earthpower", "taunt", "stealthrock"],
+      "category": "special"
+    }
+  ],
+  "corviknight": [
+    {
+      "name": "Defog",
+      "ability": "pressure",
+      "item": "leftovers",
+      "tera": "fighting",
+      "nature": "impish",
+      "evs": {"hp": 252, "def": 168, "spd": 88},
+      "moves": ["bravebird", "bodypress", "defog", "roost"],
+      "category": "physical"
+    }
+  ],
+  "gliscor": [
+    {
+      "name": "Poison Heal",
+      "ability": "poisonheal",
+      "item": "toxicorb",
+      "tera": "water",
+      "nature": "jolly",
+      "evs": {"hp": 244, "def": 44, "spe": 220},
+      "moves": ["earthquake", "knockoff", "protect", "toxic"],
+      "category": "physical"
+    }
+  ],
+  "garchomp": [
+    {
+      "name": "Swords Dance",
+      "ability": "roughskin",
+      "item": "loadeddice",
+      "tera": "steel",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["earthquake", "scaleshot", "swordsdance", "stoneedge"],
+      "category": "physical"
+    }
+  ],
+  "zamazenta": [
+    {
+      "name": "Offensive",
+      "ability": "dauntlessshield",
+      "item": "leftovers",
+      "tera": "dragon",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["closecombat", "crunch", "ironhead", "stoneedge"],
+      "category": "physical"
+    }
+  ],
+  "walkingwake": [
+    {
+      "name": "Specs",
+      "ability": "protosynthesis",
+      "item": "choicespecs",
+      "tera": "water",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["hydropump", "dracometeor", "flamethrower", "scald"],
+      "category": "special"
+    }
+  ],
+  "darkrai": [
+    {
+      "name": "Nasty Plot",
+      "ability": "baddreams",
+      "item": "lifeorb",
+      "tera": "poison",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["darkpulse", "sludgebomb", "nastyplot", "focusblast"],
+      "category": "special"
+    }
+  ],
+  "kyurem": [
+    {
+      "name": "Choice Specs",
+      "ability": "pressure",
+      "item": "choicespecs",
+      "tera": "ice",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["icebeam", "freezedry", "earthpower", "dracometeor"],
+      "category": "special"
+    }
+  ],
+  "clefable": [
+    {
+      "name": "Calm Mind",
+      "ability": "magicguard",
+      "item": "leftovers",
+      "tera": "steel",
+      "nature": "bold",
+      "evs": {"hp": 252, "def": 204, "spe": 52},
+      "moves": ["moonblast", "calmmind", "thunderwave", "softboiled"],
+      "category": "special"
+    },
+    {
+      "name": "Unaware",
+      "ability": "unaware",
+      "item": "leftovers",
+      "tera": "water",
+      "nature": "calm",
+      "evs": {"hp": 252, "def": 4, "spd": 252},
+      "moves": ["moonblast", "stealthrock", "thunderwave", "moonlight"],
+      "category": "special"
+    }
+  ],
+  "clodsire": [
+    {
+      "name": "Unaware",
+      "ability": "unaware",
+      "item": "leftovers",
+      "tera": "steel",
+      "nature": "careful",
+      "evs": {"hp": 252, "def": 4, "spd": 252},
+      "moves": ["earthquake", "toxic", "recover", "spikes"],
+      "category": "physical"
+    }
+  ],
+  "alomomola": [
+    {
+      "name": "Wish",
+      "ability": "regenerator",
+      "item": "heavydutyboots",
+      "tera": "dragon",
+      "nature": "impish",
+      "evs": {"hp": 12, "def": 252, "spd": 244},
+      "moves": ["wish", "protect", "scald", "knockoff"],
+      "category": "special"
+    }
+  ],
+  "pelipper": [
+    {
+      "name": "Rain Setter",
+      "ability": "drizzle",
+      "item": "damprock",
+      "tera": "ground",
+      "nature": "bold",
+      "evs": {"hp": 252, "def": 252, "spa": 4},
+      "moves": ["hurricane", "scald", "uturn", "roost"],
+      "category": "special"
+    }
+  ],
+  "barraskewda": [
+    {
+      "name": "Choice Band",
+      "ability": "swiftswim",
+      "item": "choiceband",
+      "tera": "water",
+      "nature": "adamant",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["liquidation", "closecombat", "flipturn", "psychicfangs"],
+      "category": "physical"
+    }
+  ],
+  "torkoal": [
+    {
+      "name": "Sun Setter",
+      "ability": "drought",
+      "item": "heatrock",
+      "tera": "dragon",
+      "nature": "relaxed",
+      "evs": {"hp": 252, "def": 252, "spd": 4},
+      "moves": ["lavaplume", "rapidspin", "stealthrock", "yawn"],
+      "category": "special"
+    }
+  ],
+  "ninetalesalola": [
+    {
+      "name": "Snow Setter",
+      "ability": "snowwarning",
+      "item": "lightclay",
+      "tera": "ghost",
+      "nature": "timid",
+      "evs": {"hp": 252, "spd": 4, "spe": 252},
+      "moves": ["auroraveil", "freezedry", "moonblast", "encore"],
+      "category": "special"
+    }
+  ],
+  "excadrill": [
+    {
+      "name": "Sand Sweeper",
+      "ability": "sandrush",
+      "item": "choiceband",
+      "tera": "ground",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["earthquake", "ironhead", "rockslide", "rapidspin"],
+      "category": "physical"
+    }
+  ],
+  "hippowdon": [
+    {
+      "name": "Sand Setter",
+      "ability": "sandstream",
+      "item": "leftovers",
+      "tera": "steel",
+      "nature": "impish",
+      "evs": {"hp": 252, "def": 252, "spd": 4},
+      "moves": ["earthquake", "stealthrock", "slackoff", "whirlwind"],
+      "category": "physical"
+    }
+  ],
+  "meowscarada": [
+    {
+      "name": "Offensive",
+      "ability": "protean",
+      "item": "heavydutyboots",
+      "tera": "dark",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["flowertrick", "knockoff", "uturn", "spikes"],
+      "category": "physical"
+    }
+  ],
+  "cinderace": [
+    {
+      "name": "Utility",
+      "ability": "libero",
+      "item": "heavydutyboots",
+      "tera": "fighting",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["pyroball", "uturn", "courtchange", "suckerpunch"],
+      "category": "physical"
+    }
+  ],
+  "weavile": [
+    {
+      "name": "Swords Dance",
+      "ability": "pressure",
+      "item": "heavydutyboots",
+      "tera": "ice",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["knockoff", "iceshard", "swordsdance", "tripleaxel"],
+      "category": "physical"
+    }
+  ],
+  "hatterene": [
+    {
+      "name": "Calm Mind",
+      "ability": "magicbounce",
+      "item": "leftovers",
+      "tera": "water",
+      "nature": "bold",
+      "evs": {"hp": 252, "def": 252, "spa": 4},
+      "moves": ["psyshock", "drainingkiss", "calmmind", "mysticalfire"],
+      "category": "special"
+    }
+  ],
+  "amoonguss": [
+    {
+      "name": "Redirection",
+      "ability": "regenerator",
+      "item": "rockyhelmet",
+      "tera": "steel",
+      "nature": "bold",
+      "evs": {"hp": 252, "def": 252, "spd": 4},
+      "moves": ["sludgebomb", "gigadrain", "spore", "clearsmog"],
+      "category": "special"
+    }
+  ],
+  "toxapex": [
+    {
+      "name": "Stall",
+      "ability": "regenerator",
+      "item": "blacksludge",
+      "tera": "fairy",
+      "nature": "bold",
+      "evs": {"hp": 252, "def": 252, "spd": 4},
+      "moves": ["surf", "toxic", "recover", "haze"],
+      "category": "special"
+    }
+  ],
+  "dondozo": [
+    {
+      "name": "RestTalk",
+      "ability": "unaware",
+      "item": "leftovers",
+      "tera": "fairy",
+      "nature": "impish",
+      "evs": {"hp": 252, "def": 252, "spd": 4},
+      "moves": ["wavecrash", "rest", "sleeptalk", "curse"],
+      "category": "physical"
+    }
+  ],
+  "skeledirge": [
+    {
+      "name": "Torch Song",
+      "ability": "unaware",
+      "item": "heavydutyboots",
+      "tera": "fairy",
+      "nature": "modest",
+      "evs": {"hp": 248, "spa": 252, "spd": 8},
+      "moves": ["torchsong", "slackoff", "shadowball", "willowisp"],
+      "category": "special"
+    }
+  ],
+  "garganacl": [
+    {
+      "name": "Salt Cure",
+      "ability": "purifyingsalt",
+      "item": "leftovers",
+      "tera": "water",
+      "nature": "impish",
+      "evs": {"hp": 252, "def": 252, "spd": 4},
+      "moves": ["saltcure", "recover", "stealthrock", "protect"],
+      "category": "physical"
+    }
+  ],
+  "ironleaves": [
+    {
+      "name": "Swords Dance",
+      "ability": "quarkdrive",
+      "item": "boosterenergy",
+      "tera": "fighting",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["leafblade", "psyblade", "closecombat", "swordsdance"],
+      "category": "physical"
+    }
+  ],
+  "irontreads": [
+    {
+      "name": "Hazard Control",
+      "ability": "quarkdrive",
+      "item": "leftovers",
+      "tera": "ghost",
+      "nature": "jolly",
+      "evs": {"atk": 252, "def": 4, "spe": 252},
+      "moves": ["earthquake", "ironhead", "rapidspin", "stealthrock"],
+      "category": "physical"
+    }
+  ],
+  "roaringmoon": [
+    {
+      "name": "Booster",
+      "ability": "protosynthesis",
+      "item": "boosterenergy",
+      "tera": "flying",
+      "nature": "jolly",
+      "evs": {"atk": 252, "spd": 4, "spe": 252},
+      "moves": ["knockoff", "outrage", "uturn", "dragondance"],
+      "category": "physical"
+    }
+  ],
+  "manaphy": [
+    {
+      "name": "Tail Glow",
+      "ability": "hydration",
+      "item": "leftovers",
+      "tera": "water",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["surf", "icebeam", "tailglow", "energyball"],
+      "category": "special"
+    }
+  ],
+  "primarina": [
+    {
+      "name": "Choice Specs",
+      "ability": "torrent",
+      "item": "choicespecs",
+      "tera": "water",
+      "nature": "modest",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["moonblast", "scald", "psychicnoise", "shadowball"],
+      "category": "special"
+    }
+  ],
+  "hydreigon": [
+    {
+      "name": "Choice Specs",
+      "ability": "levitate",
+      "item": "choicespecs",
+      "tera": "steel",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["dracometeor", "darkpulse", "flamethrower", "uturn"],
+      "category": "special"
+    }
+  ],
+  "blissey": [
+    {
+      "name": "Cleric",
+      "ability": "naturalcure",
+      "item": "heavydutyboots",
+      "tera": "ghost",
+      "nature": "bold",
+      "evs": {"hp": 4, "def": 252, "spd": 252},
+      "moves": ["seismictoss", "softboiled", "stealthrock", "thunderwave"],
+      "category": "special"
+    }
+  ],
+  "zapdos": [
+    {
+      "name": "Offensive",
+      "ability": "static",
+      "item": "heavydutyboots",
+      "tera": "fairy",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["thunderbolt", "hurricane", "voltswitch", "roost"],
+      "category": "special"
+    }
+  ],
+  "enamorus": [
+    {
+      "name": "Nasty Plot",
+      "ability": "contrary",
+      "item": "choicespecs",
+      "tera": "ground",
+      "nature": "timid",
+      "evs": {"spa": 252, "spd": 4, "spe": 252},
+      "moves": ["moonblast", "earthpower", "mysticalfire", "psychic"],
+      "category": "special"
+    }
+  ]
+}
