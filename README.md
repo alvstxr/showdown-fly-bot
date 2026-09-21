@@ -1,14 +1,106 @@
 # MaleCNS Connectome Agent for Pokémon Showdown
 
-Bio-inspired competitive agent for **Gen 9 OU / Standard Singles**. A sparse Kenyon-cell code of the full battle state is read out by mushroom-body output neurons (approach vs avoidance), oriented by a central-complex ring attractor, and decoded by ventral-nerve-cord motor channels into `poke-env` orders.
+Bio-inspired competitive agent for **Gen 9 OU / Standard Singles**. A sparse Kenyon-cell code of the battle state is read out by mushroom-body output neurons, oriented by a central-complex ring attractor, and decoded into `poke-env` orders. Move choice is matchup-first (type effectiveness, damage, KO chance, switches).
 
-The wiring is loaded from the open MaleCNS Drosophila connectome (`male-cns:v1.0`, ~166k neurons) when a neuPrint token is present, and otherwise from a Drosophila-statistic synthetic subgraph so the bot still plays.
+**Offline by default.** Installing Python packages once is the only setup that needs the internet. After that, running the bot does not contact Pokémon Showdown, neuPrint, or anything else unless you start it with `--mode ladder`, `--mode challenge`, or `--mode accept`. Those three modes log into [play.pokemonshowdown.com](https://play.pokemonshowdown.com).
+
+## 1. Pokémon Showdown username and password
+
+The public server does not accept guests for a bot. You need a **registered** account.
+
+1. Open [https://play.pokemonshowdown.com](https://play.pokemonshowdown.com).
+2. Click **Choose name** in the top-right.
+3. Type the name the bot should appear as.
+4. Click **Register** and set a password (confirm the email if Showdown asks).
+5. That registered name is the username. The password you just set is the password.
+
+Use a dedicated bot account if you also play on a personal name. The name you register is what opponents will see.
+
+## 2. Create and edit `.env`
+
+Credentials live in a file named `.env` in this folder (same place as `run_agent.py`). It is not committed to git.
+
+**Windows (Command Prompt, in this folder):**
+
+```bat
+copy .env.example .env
+notepad .env
+```
+
+**Windows (PowerShell):**
+
+```powershell
+Copy-Item .env.example .env
+notepad .env
+```
+
+**Linux / macOS:**
+
+```bash
+cp .env.example .env
+nano .env
+```
+
+Set only these two lines. No quotes, no spaces around `=`:
+
+```
+SHOWDOWN_USERNAME=YourBotName
+SHOWDOWN_PASSWORD=yourpassword
+```
+
+Leave everything else blank. You do **not** need a neuPrint token.
+
+Save the file. You can also skip `.env` and pass `--username YourBotName --password yourpassword` when you start the bot.
+
+## 3. Run it
+
+First-time launch may install packages into `.venv` (needs internet once). After that, a bare start stays **offline** and only self-checks the type chart, matchup scorer, and synthetic connectome.
+
+**Windows:**
+
+```bat
+run_bot.bat
+```
+
+**Linux / macOS:**
+
+```bash
+chmod +x run_bot.sh
+./run_bot.sh
+```
+
+You should see `selfcheck OK`. No Showdown login happens.
+
+### Go online on the Pokémon Showdown page
+
+These commands log into the public server with the name and password from `.env`.
+
+Ladder (queue on the official server):
+
+```bat
+run_bot.bat --mode ladder --format gen9ou
+```
+
+Challenge a person who is already on [play.pokemonshowdown.com](https://play.pokemonshowdown.com) (use their Showdown name):
+
+```bat
+run_bot.bat --mode challenge --challenge-user THEIR_NAME --format gen9ou --n-battles 1
+```
+
+Sit on the server and accept challenges from anyone:
+
+```bat
+run_bot.bat --mode accept --format gen9ou
+```
+
+On Linux / macOS, use `./run_bot.sh` with the same flags. Open the Showdown site in a browser to watch or accept the match.
 
 ## Repository layout
 
 ```
 .
 ├── state_engine.py          # Gen 9 mechanics vectorizer + damage range engine
+├── matchup_policy.py        # Type / damage / switch scoring
 ├── memory_system.py         # Smogon priors, opponent set inference, turn buffer
 ├── connectome_bridge.py     # MaleCNS / synthetic SNN (KC, MBON, CX, VNC)
 ├── neuromodulation.py       # DAN reward-prediction error + STDP, 5-HT risk gain
@@ -16,10 +108,10 @@ The wiring is loaded from the open MaleCNS Drosophila connectome (`male-cns:v1.0
 ├── run_bot.sh               # Linux / macOS launcher
 ├── run_bot.bat              # Windows launcher
 ├── requirements.txt
-├── .env.example
+├── .env.example             # Copy to .env and fill SHOWDOWN_USERNAME / PASSWORD
 ├── data/
 │   ├── smogon_sets.json     # Meta set priors for opponent inference
-│   ├── connectome/          # Cached MaleCNS subgraph (.npz)
+│   ├── connectome/          # Cached subgraph (.npz), created locally
 │   └── weights/             # Plastic KC→MBON weights after STDP
 └── teams/
     └── gen9ou_sample.txt    # Example Gen 9 OU paste
@@ -28,22 +120,18 @@ The wiring is loaded from the open MaleCNS Drosophila connectome (`male-cns:v1.0
 ## Turn loop
 
 1. Parse the `poke-env` `Battle` into a fixed **1652-d** normalized vector (`state_engine.py`).
-2. Update opponent probabilistic set profiles from revealed moves / items / abilities (`memory_system.py`).
+2. Update opponent set profiles from revealed moves / items / abilities (`memory_system.py`).
 3. Run ≤ **50 ms** of LIF propagation through KC → MBON → CX → VNC (`connectome_bridge.py`).
-4. Compute dopaminergic RPE and apply three-factor STDP; set serotonergic risk \(S \in [0,1]\) (`neuromodulation.py`).
-5. Mask illegal actions and emit a `BattleOrder` (`run_agent.py`).
+4. Score legal moves and switches from type matchups and damage ranges (`matchup_policy.py`).
+5. Apply serotonergic gains, mask illegal actions, emit a `BattleOrder` (`run_agent.py`).
 
-VNC motor map (13 channels, covering the singles action space described in the spec):
+VNC motor map (13 channels):
 
 | Channels | Order |
 | --- | --- |
 | 0–3 | Attack slots 1–4 |
 | 4–7 | Terastallize + Attack 1–4 |
 | 8–12 | Switch 1–5 |
-
-A compact **10-channel** readout is also produced (Attack 1–4, Switch 1–5, Tera intent).
-
-Serotonin: \(S > 0.6\) favors hazards, recovery, and safe switches; \(S < 0.3\) favors high-power / low-accuracy clicks, predictions, and offensive Tera.
 
 ## Mechanics coverage (`state_engine.py`)
 
@@ -56,61 +144,27 @@ Serotonin: \(S > 0.6\) favors hazards, recovery, and safe switches; \(S < 0.3\) 
 - Priority brackets −7…+5, speed order with Scarf, Swift Swim / Chlorophyll / Sand Rush / Slush Rush, stages, paralysis, Tailwind, Trick Room.
 - Gen 9 damage formula with 16 rolls (85–100), STAB, type, crit (1.5×, Sniper 2.25×), screens, burn, items, abilities.
 
-## Setup
+## Optional: local Showdown server
 
-```bash
-cp .env.example .env
-# Edit .env: SHOWDOWN_USERNAME, SHOWDOWN_PASSWORD, NEUPRINT_APPLICATION_TOKEN
-```
-
-neuPrint token: sign in at [neuprint.janelia.org](https://neuprint.janelia.org) → account menu → auth token. Dataset: `male-cns:v1.0`. If the token is missing or rejected, the agent logs a warning and uses the synthetic connectome.
-
-### Linux / macOS
-
-```bash
-chmod +x run_bot.sh
-./run_bot.sh --mode ladder --format gen9ou
-./run_bot.sh --mode challenge --challenge-user YOUR_NAME --format gen9ou --n-battles 1
-./run_bot.sh --mode accept --format gen9ou
-```
-
-The script creates `.venv` if needed, installs `requirements.txt`, sources `.env`, and forwards all arguments to `python run_agent.py`.
-
-### Windows
+`--mode local_eval` talks to a server at `ws://localhost:8000/showdown/websocket` on your machine. It does not use the public page. Start a local Pokémon Showdown server first, then:
 
 ```bat
-run_bot.bat --mode ladder --format gen9ou
+run_bot.bat --local --mode local_eval --format gen9ou --n-battles 5
 ```
-
-### Direct Python
-
-```bash
-python run_agent.py --mode selfcheck
-python run_agent.py --username BOT --password SECRET --mode ladder --format gen9ou --team teams/gen9ou_sample.txt
-```
-
-## Local evaluation
-
-`--mode local_eval` (or `--local`) talks to a Pokémon Showdown server at `ws://localhost:8000/showdown/websocket`. Start a local server first, then:
-
-```bash
-./run_bot.sh --local --mode local_eval --format gen9ou --n-battles 5
-```
-
-The heuristic baseline from `poke-env` is used as the opponent.
 
 ## CLI
 
 | Flag | Default | Meaning |
 | --- | --- | --- |
-| `--username` / `--password` | `.env` | Showdown account |
+| `--username` / `--password` | `.env` | Registered Showdown account |
 | `--format` | `gen9ou` | Battle format |
-| `--mode` | `ladder` | `ladder`, `challenge`, `accept`, `local_eval`, `selfcheck` |
-| `--team` | `teams/gen9ou_sample.txt` | Showdown paste |
-| `--local` | off | Localhost PS server |
+| `--mode` | `selfcheck` | Offline test; use `ladder`, `challenge`, or `accept` to go online |
+| `--team` | `teams/gen9ou_sample.txt` | Showdown team paste |
+| `--local` | off | Localhost PS server (not the public page) |
 | `--challenge-user` | — | Target for `--mode challenge` |
 | `--n-battles` | `1` | Games to play |
+| `--neuprint` | off | Fetch MaleCNS wiring from Janelia (otherwise local synthetic graph) |
 
 ## Connectome notes
 
-The full ~166k-neuron MaleCNS graph is not simulated at 50 ms. The bridge pulls a **task-relevant subgraph** (Kenyon cells, MBONs, ellipsoid / fan-shaped-body types, descending neurons) and embeds it in a fixed-size SNN (2048 KC, 34 MBON, 16 CX, 13 VNC). Plastic KC→MBON weights are stored under `data/weights/kc_mbon.npy`.
+The full ~166k-neuron MaleCNS graph is not simulated. The agent uses a **2,367-cell** subgraph (256 projection neurons, 2048 Kenyon cells, 34 MBONs, 16 CX, 13 VNC). By default that graph is synthetic and local. `--neuprint` plus a Janelia token is optional and is the only other online path besides Pokémon Showdown.

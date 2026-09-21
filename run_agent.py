@@ -92,9 +92,16 @@ class ConnectomePlayer:
     def __init_runtime__(self) -> None:
         self.state_engine = BattleStateEngine()
         self.memory = MemorySystem()
-        token_ok = _validate_neuprint_token(
-            os.environ.get("NEUPRINT_APPLICATION_TOKEN") or os.environ.get("NEUPRINT_TOKEN")
-        )
+        use_neuprint = os.environ.get("FLY_USE_NEUPRINT", "").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+        }
+        token_ok = False
+        if use_neuprint:
+            token_ok = _validate_neuprint_token(
+                os.environ.get("NEUPRINT_APPLICATION_TOKEN") or os.environ.get("NEUPRINT_TOKEN")
+            )
         conn = load_connectome(force_synthetic=not token_ok)
         self.snn = ConnectomeSNN(conn)
         self.neuromod = NeuromodulatoryLoop()
@@ -287,8 +294,9 @@ def _server_and_account(args: argparse.Namespace):
         cfg = ShowdownServerConfiguration
         if not username or not password:
             raise SystemExit(
-                "Public Showdown requires --username/--password or "
-                "SHOWDOWN_USERNAME / SHOWDOWN_PASSWORD in .env"
+                "Public Showdown needs a registered name and password.\n"
+                "Copy .env.example to .env, then set SHOWDOWN_USERNAME and "
+                "SHOWDOWN_PASSWORD (see the README). Or pass --username and --password."
             )
         account = AccountConfiguration(username, password)
     return account, cfg
@@ -304,13 +312,18 @@ def build_arg_parser() -> argparse.ArgumentParser:
     p.add_argument(
         "--mode",
         choices=("ladder", "challenge", "accept", "local_eval", "selfcheck"),
-        default="ladder",
-        help="ladder | challenge | accept | local_eval | selfcheck",
+        default="selfcheck",
+        help="selfcheck (offline default) | ladder | challenge | accept | local_eval",
     )
     p.add_argument("--team", default=str(ROOT / "teams" / "gen9ou_sample.txt"), help="Showdown team paste")
     p.add_argument("--local", action="store_true", help="Connect to a local PS server (ws://localhost:8000)")
     p.add_argument("--challenge-user", default=None, help="Username to challenge (--mode challenge)")
     p.add_argument("--n-battles", type=int, default=1, help="Games to play")
+    p.add_argument(
+        "--neuprint",
+        action="store_true",
+        help="Opt in to fetching MaleCNS wiring from Janelia (offline synthetic graph is used otherwise)",
+    )
     p.add_argument("--avatar", default=None)
     p.add_argument("--log-level", default="INFO")
     return p
@@ -321,6 +334,8 @@ async def _run(args: argparse.Namespace) -> None:
         level=getattr(logging, str(args.log_level).upper(), logging.INFO),
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
+    if args.neuprint:
+        os.environ["FLY_USE_NEUPRINT"] = "1"
     if args.mode == "selfcheck":
         _self_check_type_chart()
         self_check_matchups()

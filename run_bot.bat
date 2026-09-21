@@ -1,9 +1,11 @@
 @echo off
 REM Fly-connectome Pokémon Showdown agent launcher (Windows).
-REM Usage:
+REM Offline by default (selfcheck). Goes online only for ladder / challenge / accept.
+REM
+REM   run_bot.bat
 REM   run_bot.bat --mode ladder --format gen9ou
 REM   run_bot.bat --mode challenge --challenge-user YOUR_NAME --format gen9ou
-REM   run_bot.bat --local --mode local_eval --n-battles 5
+REM   run_bot.bat --mode accept --format gen9ou
 
 setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"
@@ -47,11 +49,14 @@ if not exist "requirements.txt" (
   exit /b 1
 )
 
-python -m pip install --upgrade pip >nul
-python -m pip install -q -r requirements.txt
+python -c "import poke_env, numpy, scipy, dotenv" >nul 2>&1
 if errorlevel 1 (
-  echo ERROR: Failed to install dependencies from requirements.txt
-  exit /b 1
+  echo Installing Python packages into .venv (one-time; needs internet)...
+  python -m pip install -q -r requirements.txt
+  if errorlevel 1 (
+    echo ERROR: Failed to install dependencies from requirements.txt
+    exit /b 1
+  )
 )
 
 if exist ".env" (
@@ -60,13 +65,6 @@ if exist ".env" (
       set "%%A=%%B"
     )
   )
-) else (
-  echo WARNING: no .env file found. Copy .env.example to .env and add credentials.
-)
-
-if "%NEUPRINT_APPLICATION_TOKEN%"=="" if "%NEUPRINT_TOKEN%"=="" (
-  echo WARNING: NEUPRINT_APPLICATION_TOKEN is empty — a synthetic connectome will be used.
-  echo          Get a token at https://neuprint.janelia.org
 )
 
 python run_agent.py %*

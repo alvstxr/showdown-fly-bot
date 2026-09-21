@@ -184,6 +184,13 @@ def load_connectome(
     server = server or os.environ.get("NEUPRINT_SERVER") or "https://neuprint.janelia.org"
     dataset = dataset or os.environ.get("NEUPRINT_DATASET") or "male-cns:v1.0"
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    use_neuprint = os.environ.get("FLY_USE_NEUPRINT", "").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+    }
+    if not use_neuprint:
+        force_synthetic = True
 
     if CACHE_PATH.exists() and not force_synthetic:
         try:

@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # Fly-connectome Pokémon Showdown agent launcher (Linux / macOS).
+# Offline by default (selfcheck). Goes online only for ladder / challenge / accept.
 #
-# Usage:
 #   chmod +x run_bot.sh
+#   ./run_bot.sh
 #   ./run_bot.sh --mode ladder --format gen9ou
 #   ./run_bot.sh --mode challenge --challenge-user YOUR_NAME --format gen9ou
-#   ./run_bot.sh --local --mode local_eval --n-battles 5
-#
-# Credentials and the neuPrint token are loaded from .env in this directory.
+#   ./run_bot.sh --mode accept --format gen9ou
 
 set -euo pipefail
 
@@ -49,21 +48,16 @@ if [ ! -f "requirements.txt" ]; then
   die "requirements.txt is missing from $ROOT"
 fi
 
-python -m pip install --upgrade pip >/dev/null
-python -m pip install -r requirements.txt
+if ! python -c "import poke_env, numpy, scipy, dotenv" >/dev/null 2>&1; then
+  echo "Installing Python packages into .venv (one-time; needs internet)..."
+  python -m pip install -r requirements.txt
+fi
 
 if [ -f ".env" ]; then
   set -a
   # shellcheck disable=SC1091
   source ".env"
   set +a
-else
-  echo "WARNING: no .env file found. Copy .env.example to .env and add credentials." >&2
-fi
-
-if [ -z "${NEUPRINT_APPLICATION_TOKEN:-}" ] && [ -z "${NEUPRINT_TOKEN:-}" ]; then
-  echo "WARNING: NEUPRINT_APPLICATION_TOKEN is empty — a synthetic connectome will be used." >&2
-  echo "         Get a token at https://neuprint.janelia.org (Account → Auth Token)." >&2
 fi
 
 exec python run_agent.py "$@"
